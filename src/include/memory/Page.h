@@ -1,7 +1,3 @@
-//
-// Created by deal_with on 13/11/2021.
-//
-
 #ifndef ANOTHERSQL_PAGE_H
 #define ANOTHERSQL_PAGE_H
 

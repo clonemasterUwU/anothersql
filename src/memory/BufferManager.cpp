@@ -49,4 +49,10 @@ Frame &BufferManager::fetchPageFrame(i64 pageNum) {
     newFrame->pin();
     newFrame->bufferManager.diskSpaceManager.readPage(pageNum, newFrame->contents.get());
     newGuard.unlock();
+    return *newFrame;
+}
+
+BufferManager::~BufferManager(){
+    std::scoped_lock<std::mutex> managerGuard(managerLock);
+    //
 }

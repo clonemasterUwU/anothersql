@@ -1,2 +1,1 @@
-set(SYNC_SOURCE PinLock.cpp PinMutex.cpp)
-add_library(sync STATIC ${SYNC_SOURCE})
+target_sources(server PRIVATE PinLock.cpp PinMutex.cpp)

@@ -1,2 +1,1 @@
-set(RECOVERY_SOURCE LogManager.cpp)
-add_library(recovery STATIC ${RECOVERY_SOURCE})
+target_sources(server PRIVATE LogManager.cpp)

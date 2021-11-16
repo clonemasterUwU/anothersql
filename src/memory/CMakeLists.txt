@@ -1,2 +1,2 @@
-set(MEMORY_SOURCE  Frame.cpp BufferManager.cpp ClockEvictionPolicy.cpp Page.cpp)
-add_library(memory STATIC ${MEMORY_SOURCE})
+target_sources(server PRIVATE Frame.cpp BufferManager.cpp ClockEvictionPolicy.cpp Page.cpp)
+

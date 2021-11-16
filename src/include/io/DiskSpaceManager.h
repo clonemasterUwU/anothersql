@@ -1,7 +1,3 @@
-//
-// Created by deal_with on 11/11/2021.
-//
-
 #ifndef ANOTHERSQL_DISKSPACEMANAGER_H
 #define ANOTHERSQL_DISKSPACEMANAGER_H
 #include <memory>
@@ -9,6 +5,8 @@
 class DiskSpaceManager {
 private:
     friend class BufferManager;
+    std::string directory;
+
 public:
     static i64 INVALID_PAGE_NUM;
     static i32 PAGE_SIZE;

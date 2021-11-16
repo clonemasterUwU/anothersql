@@ -1,2 +1,2 @@
-set(IO_SOURCE DiskSpaceManager.cpp)
-add_library(io STATIC ${IO_SOURCE})
+target_sources(server PRIVATE DiskSpaceManager.cpp)
+

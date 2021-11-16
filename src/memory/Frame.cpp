@@ -43,4 +43,3 @@ bool Frame::isPinned() {
     return pinMutex.isPinned();
 }
 
-BufferManager::~BufferManager() = default;
