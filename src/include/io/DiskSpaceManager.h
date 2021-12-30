@@ -2,12 +2,14 @@
 #define ANOTHERSQL_DISKSPACEMANAGER_H
 #include <memory>
 #include "_macro.h"
+class RecoveryManager;
 class DiskSpaceManager {
 private:
     friend class BufferManager;
-    std::string directory;
-
+    std::string_view _dbDir;
+    std::reference_wrapper<RecoveryManager> _recoveryManager;
 public:
+
     static i64 INVALID_PAGE_NUM;
     static i32 PAGE_SIZE;
     void writePage(i64 page,u8* buf);

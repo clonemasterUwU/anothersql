@@ -1,1 +1,1 @@
-target_sources(server PRIVATE LogManager.cpp)
+target_sources(server PRIVATE LogManager.cpp RecoveryManager.cpp)

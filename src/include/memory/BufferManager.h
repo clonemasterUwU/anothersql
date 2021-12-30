@@ -6,33 +6,29 @@
 #include <unordered_map>
 #include <mutex>
 #include <vector>
-#include "recovery/LogManager.h"
-#include "io/DiskSpaceManager.h"
+#include "_macro.h"
+
 #include "Page.h"
-#include "Frame.h"
-
-class ClockEvictionPolicy;
-
+#include "EvictionPolicy.h"
+class DiskSpaceManager;
 class BufferManager {
 private:
     i32 firstFreeIndex;
-    DiskSpaceManager &diskSpaceManager;
-    ClockEvictionPolicy &evictionPolicy;
+    std::reference_wrapper<DiskSpaceManager> _diskSpaceManager;
+    std::unique_ptr<EvictionPolicy> _evictionPolicy;
     std::unordered_map<i64, u32> pageToFrame;
-    std::vector<std::shared_ptr<Frame>> frames;
     std::condition_variable hasFreePage;
     std::mutex managerLock;
 
-    friend class Frame;
+
 
 public:
-    BufferManager(DiskSpaceManager &diskSpaceManager, ClockEvictionPolicy &clockEvictionPolicy) :
-            evictionPolicy(clockEvictionPolicy), diskSpaceManager(diskSpaceManager) {};
+    BufferManager(DiskSpaceManager &diskSpaceManager, std::unique_ptr<EvictionPolicy> evictionPolicy) :
+            _evictionPolicy(std::move(evictionPolicy)), _diskSpaceManager(diskSpaceManager) {};
 
     static i32 RESERVED_SPACE;
     static i32 EFFECTIVE_PAGE_SIZE;
 
-    Frame &fetchPageFrame(i64 pageNum);
 
     ~BufferManager();
 };

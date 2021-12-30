@@ -24,14 +24,14 @@ void Frame::setUsed() {
 void Frame::flush() {
     PinLock<Frame> pinGuard(*this);
     if (!isValid() || !dirty) return;
-    bufferManager.diskSpaceManager.writePage(pageNum, contents.get());
+    bufferManager.diskSpaceManager.writePage(pageNum, contents.get(nullptr, <#initializer#>));
     dirty = false;
 }
 
 void Frame::readBytes(i32 position, i32 num, u8 *buf) {
     PinLock<Frame> pinGuard(*this);
     assert(isValid());
-    memcpy(buf,contents.get()+position+dataOffset(),num);
+    memcpy(buf, contents.get(nullptr, <#initializer#>) + position + dataOffset(), num);
     bufferManager.evictionPolicy.hit(*this);
 }
 

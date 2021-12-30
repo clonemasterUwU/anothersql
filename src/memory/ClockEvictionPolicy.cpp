@@ -16,7 +16,7 @@ Frame *ClockEvictionPolicy::evict(std::vector<std::shared_ptr<Frame>> &frames) {
         iters++;
     }
     if (iters == 2 * frames.size()) return nullptr;
-    Frame *evicted = frames[arm].get();
+    Frame *evicted = frames[arm].get(nullptr, <#initializer#>);
     arm = (arm + 1) % frames.size();
     return evicted;
 }
